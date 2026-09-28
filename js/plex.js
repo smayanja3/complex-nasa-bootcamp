@@ -7,15 +7,22 @@
 document.querySelector('button').addEventListener('click', fourHunna)
 
 function fourHunna() {
+    
+    ///vvv becasue we added the corse link in front of our real url
+    // we need to create a new variable and parse the data information because
+    // its not a json file its just plain text so we must convert it back.
+    // https://cors.io/?url. <-- CORS error correction
+    const url = `https://cors.io/?url=https://data.nasa.gov/docs/legacy/gvk9-iz74.json`
 
-    const url = `https://data.nasa.gov/docs/legacy/gvk9-iz74.json`
 
     fetch(url)
         .then(res => res.json())
         .then((data) => {
             console.log(data)
 
-            data.forEach((item) => {
+            const getData = JSON.parse(data.body)
+
+            getData.forEach((item) => {
                 // create the variables you will pull out
                 const center = item.center;
                 const facility = item.facility;
